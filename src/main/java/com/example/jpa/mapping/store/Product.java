@@ -44,6 +44,8 @@ public class Product {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+    // fetch = FetchType.LAZY and optional = false make one to one LAZY
+    // https://stackoverflow.com/questions/1444227/making-a-onetoone-relation-lazy
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", optional = false)
     private WarehouseProductInfo warehouseProductInfo;
 
