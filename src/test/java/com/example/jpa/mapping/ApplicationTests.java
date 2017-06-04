@@ -12,7 +12,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-
 //re-create-database-before-each-test
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ApplicationTests {
@@ -112,7 +110,6 @@ public class ApplicationTests {
         log.info("start test method getImages");
         List<Product> list = this.productRepository.findAll();
         Product product = list.get(0);
-        log.info("product type is {}",product.getClass().getSimpleName());
         log.info("start get images from product");
         Image image = (Image)(product.getImages().toArray())[0];
         assertEquals("image1", image.getName());
