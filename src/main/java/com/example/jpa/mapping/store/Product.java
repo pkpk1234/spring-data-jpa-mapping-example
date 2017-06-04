@@ -16,13 +16,11 @@
 
 package com.example.jpa.mapping.store;
 
-import lombok.NoArgsConstructor;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import javax.persistence.Version;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
