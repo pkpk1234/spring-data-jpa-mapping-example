@@ -1,9 +1,11 @@
 package com.example.jpa.mapping;
 
-import com.example.jpa.mapping.repository.*;
-import com.example.jpa.mapping.store.*;
+import com.example.jpa.mapping.repository.ProductRepository;
+import com.example.jpa.mapping.store.Company;
+import com.example.jpa.mapping.store.Image;
+import com.example.jpa.mapping.store.Product;
+import com.example.jpa.mapping.store.WarehouseProductInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,53 +26,7 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationTests {
 
     @Autowired
-    CompanyRepository companyRepository;
-
-    @Autowired
-    ImageRepository imageRepository;
-
-    @Autowired
-    ImporterRepository importerRepository;
-
-    @Autowired
-    MainVersionRepository mainVersionRepository;
-
-    @Autowired
     ProductRepository productRepository;
-
-    @Autowired
-    SubVersionRepository subVersionRepository;
-
-    @Autowired
-    WarehouseProductInfoRepository warehouseProductInfoRepository;
-
-    @Before
-    @Transactional
-    public void initData() {
-        log.info("start init data ... ... ... ... ");
-        //nullable = false,and no cascade , must save manual
-        Company company = new Company("company1");
-        this.companyRepository.save(company);
-        //no cascade , must save manual
-        Importer importer = new Importer("pkpk1234");
-        this.importerRepository.save(importer);
-
-        //cascade = CascadeType.ALL , auto saved
-        SubVersion subVersion = new SubVersion("r100");
-
-        MainVersion mainVersion = new MainVersion("1.0");
-        mainVersion.addSubVersion(subVersion);
-
-        Image image = new Image("image1", 0);
-        image.addMainVersion(mainVersion);
-
-        WarehouseProductInfo warehouseProductInfo = new WarehouseProductInfo(100);
-
-        Product product = new Product("new product", "prd123", 100, company, importer);
-        product.addImage(image);
-        product.addWarehouse(warehouseProductInfo);
-        productRepository.save(product);
-    }
 
     @Test
     public void getProduct() {
@@ -111,7 +67,7 @@ public class ApplicationTests {
         List<Product> list = this.productRepository.findAll();
         Product product = list.get(0);
         log.info("start get images from product");
-        Image image = (Image)(product.getImages().toArray())[0];
+        Image image = (Image) (product.getImages().toArray())[0];
         assertEquals("image1", image.getName());
     }
 
