@@ -53,7 +53,7 @@ public class Product {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     @OrderBy("index")
-    private Set<Image> images = new LinkedHashSet<Image>();
+    private Set<Image> images = new LinkedHashSet<Image>(); // must newß
 
     @Version
     private int version;

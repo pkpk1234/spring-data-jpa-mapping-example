@@ -32,7 +32,7 @@ public class ApplicationTests {
     public void getProduct() {
         log.info("start test method getProduct");
         List<Product> list = this.productRepository.findAll();
-        assertEquals(1, list.size());
+        assertEquals(2, list.size());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ApplicationTests {
     public void getImages() {
         log.info("start test method getImages");
         List<Product> list = this.productRepository.findAll();
-        Product product = list.get(0);
+        Product product = list.get(1);
         log.info("start get images from product");
         Image image = (Image) (product.getImages().toArray())[0];
         assertEquals("image1", image.getName());

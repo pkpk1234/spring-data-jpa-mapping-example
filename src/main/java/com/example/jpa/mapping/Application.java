@@ -11,6 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 @Component
 @Slf4j
 class DataInitlizer implements CommandLineRunner {
@@ -47,7 +50,12 @@ class DataInitlizer implements CommandLineRunner {
         Product product = new Product("new product", "prd123", 100, company, importer);
         product.addImage(image);
         product.addWarehouse(warehouseProductInfo);
-        productRepository.save(product);
+        //productRepository.save(product);
+
+        Product product2 = new Product("new product2", "prd123-2", 100, company, importer);
+        product2.addImage(image);
+        product2.addWarehouse(warehouseProductInfo);
+        productRepository.save( Arrays.asList(product,product2));
     }
 
 }
